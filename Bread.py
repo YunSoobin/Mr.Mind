@@ -6,62 +6,74 @@ class Bread(metaclass=ABCMeta):
     def getRecipe(self):
         pass
 
+
+# Creator
+class Factory(metaclass=ABCMeta):
+    @abstractmethod
+    def getBread(self, breadType):
+        pass
+
+
 # concreteProduct
-class Cream(Bread):
-    def __init__(self, flour, water, butter):
-        self.flour = flour
-        self.water = water
-        self.butter = butter
+class CreamBread(Bread):
+    def __init__(self):
+        self.breadType = "cream"
+        self.flour = 100
+        self.water = 100
+        self.cream = 200
 
     def getRecipe(self):
-        print("breadType : cream")
+        print("breadType :", self.breadType)
         print("recipe")
-        print("flour : ", self.flour)
+        print("flour :", self.flour)
         print("water :", self.water)
-        print("butter : ", self.butter, "\n")
+        print("cream :", self.cream)
 
-class Sugar(Bread):
-    def __init__(self, flour, water, butter):
-        self.flour = flour
-        self.water = water
-        self.butter = butter
+class SugarBread(Bread):
+    def __init__(self):
+        self.breadType = "sugar"
+        self.flour = 100
+        self.water = 50
+        self.sugar = 200
 
     def getRecipe(self):
-        print("breadType : sugar")
+        print("breadType :", self.breadType)
         print("recipe")
-        print("flour : ", self.flour)
+        print("flour :", self.flour)
         print("water :", self.water)
-        print("butter : ", self.butter, "\n")
+        print("sugar :", self.sugar)
 
-class Butter(Bread):
-    def __init__(self, flour, water, butter):
-        self.flour = flour
-        self.water = water
-        self.butter = butter
+class ButterBread(Bread):
+    def __init__(self):
+        self.breadType = "butter"
+        self.flour = 100
+        self.water = 100
+        self.butter = 50
 
     def getRecipe(self):
-        print("breadType : butter")
+        print("breadType :", self.breadType)
         print("recipe")
-        print("flour : ", self.flour)
+        print("flour :", self.flour)
         print("water :", self.water)
-        print("butter : ", self.butter, "\n")
+        print("butter :", self.butter)
 
-# Factory
-class BreadFactory:
-    def getCreamBread(self):
-        return Cream(100, 100, 200)
+# ConcreteCreator
+class BreadFactory(Factory):
+    def getBread(self):
+        if self == "cream":
+            recipe = CreamBread().getRecipe()
+        elif self == "sugar":
+            recipe = SugarBread().getRecipe()
+        elif self == "butter":
+            recipe = ButterBread().getRecipe()
 
-    def getSugarBread(self):
-        return Sugar(100, 50, 200)
+        return recipe
 
-    def getButterBread(self):
-        return Butter(100, 100, 50)
 
-# client
-def bread_client():
-    BreadFactory().getCreamBread().getRecipe()
-    BreadFactory().getSugarBread().getRecipe()
-    BreadFactory().getButterBread().getRecipe()
+breadTypes = ["cream", "sugar", "butter"]
+for i in breadTypes:
+    BreadFactory.getBread(i)
+    print('')
 
-if __name__ == '__main__':
-    client = bread_client()
+
+
