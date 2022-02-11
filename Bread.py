@@ -60,6 +60,7 @@ class ButterBread(Bread):
 # ConcreteCreator
 class BreadFactory(Factory):
     def getBread(self):
+        recipe = None
         if self == "cream":
             recipe = CreamBread().getRecipe()
         elif self == "sugar":
