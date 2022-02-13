@@ -35,7 +35,7 @@ while True:
     # 연못의 가장자리는 모두 땅(0)이기 때문에 확인 범위를 (1,10)으로 설정
     for i in range(1, 10):
         for j in range(1, 10):
-            if depth(i, j) == True:
+            if depth(i, j) == True: # 상, 하, 좌, 우 모두가 자신보다 깊이가 같거나 큰 경우
                 pond[i][j] += 1
                 flag = True
     if flag == False:   # 더이상 물의 깊이가 증가할 수 없을 때 종료
@@ -47,4 +47,3 @@ for i in range(1, 10):
         result += pond[i][j]
 
 print(result)
-
