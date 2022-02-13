@@ -70,11 +70,11 @@ class BreadFactory(Factory):
 
         return recipe
 
-
-breadTypes = ["cream", "sugar", "butter"]
-for i in breadTypes:
-    BreadFactory.getBread(i)
-    print('')
+if __name__=="__main__":
+    breadTypes = ["cream", "sugar", "butter"]
+    for i in breadTypes:
+        BreadFactory.getBread(i)
+        print('')
 
 
 
